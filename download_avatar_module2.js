@@ -12,10 +12,10 @@ function getRepoContributors(repoOwner, repoName, callback) { //define function 
       throw err;
     }
     if (response.statusCode === 404) { //git hub repository or repo owner does not exist
-      console.log(`${repoOwner} and/or ${repoName} does not exist`)
+      throw `${repoOwner} and/or ${repoName} does not exist`
     }
     if (response.statusCode === 401) { // if token is not valid throw an error
-      console.log("Invalid token.")
+      throw "Invalid token."
     }
     else if (!fs.existsSync('avatar')) { //if avatar folder does not exist create it
       fs.mkdirSync('avatar');
